@@ -1,8 +1,34 @@
 name = "buley-fyi"
-main = "worker.js"
-compatibility_date = "2024-01-01" # Using a recent date, adjust if needed
+main = "src/worker.ts"
+compatibility_date = "2024-01-01"
 workers_dev = true
 
 routes = [
   { pattern = "buley.fyi/*", zone_name = "buley.fyi" }
 ]
+
+# Durable Objects for real-time presence
+[durable_objects]
+bindings = [
+  { name = "PAGE_SESSIONS", class_name = "AeonPageSession" },
+  { name = "ROUTES_REGISTRY", class_name = "AeonRoutesRegistry" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["AeonPageSession", "AeonRoutesRegistry"]
+
+# D1 Database for persistence
+[[d1_databases]]
+binding = "DB"
+database_name = "buley-fyi"
+database_id = "e4a58c7c-d044-4615-9dd4-4b52bda3303e"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+
+# Dev settings
+[dev]
+port = 8787
+local_protocol = "http"
