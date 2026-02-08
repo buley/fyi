@@ -1,0 +1,8 @@
+name = "buley-fyi"
+main = "worker.js"
+compatibility_date = "2024-01-01" # Using a recent date, adjust if needed
+workers_dev = true
+
+routes = [
+  { pattern = "buley.fyi/*", zone_name = "buley.fyi" }
+]
