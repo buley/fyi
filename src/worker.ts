@@ -51,7 +51,64 @@ const INDEX_HTML = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BULEY // SYSTEM CORE</title>
+    <title>Taylor Buley | Cognitive Architect & Engineering Leader</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Taylor Buley is a cognitive architect and engineering leader specializing in AI systems, distributed computing, and human-computer interaction. Builder of intelligent systems that augment human capability.">
+    <meta name="keywords" content="Taylor Buley, cognitive architect, engineering leader, AI systems, distributed computing, software architecture, machine learning, human-computer interaction, San Francisco, tech leadership">
+    <meta name="author" content="Taylor William Buley">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://buley.fyi/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://buley.fyi/">
+    <meta property="og:title" content="Taylor Buley | Cognitive Architect & Engineering Leader">
+    <meta property="og:description" content="Building intelligent systems that augment human capability. Engineering leader specializing in AI, distributed systems, and cognitive computing.">
+    <meta property="og:image" content="https://buley.fyi/og-image.png">
+    <meta property="og:site_name" content="Taylor Buley">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://buley.fyi/">
+    <meta name="twitter:title" content="Taylor Buley | Cognitive Architect">
+    <meta name="twitter:description" content="Building intelligent systems that augment human capability. Engineering leader specializing in AI and distributed systems.">
+    <meta name="twitter:image" content="https://buley.fyi/og-image.png">
+    <meta name="twitter:creator" content="@taylorbuley">
+
+    <!-- Additional Meta -->
+    <meta name="theme-color" content="#00ff88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Taylor Buley">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Taylor William Buley",
+      "jobTitle": "Cognitive Architect",
+      "description": "Engineering leader specializing in AI systems, distributed computing, and human-computer interaction",
+      "url": "https://buley.fyi",
+      "sameAs": [
+        "https://github.com/buley",
+        "https://buley.xyz",
+        "https://buley.info",
+        "https://www.linkedin.com/in/taylorbuley"
+      ],
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Distributed Systems",
+        "Software Architecture",
+        "Human-Computer Interaction",
+        "Cognitive Computing"
+      ]
+    }
+    </script>
+
     <style>
         html, body { height: 100%; }
         body { margin: 0; overflow: hidden; background-color: #050505; font-family: 'Courier New', Courier, monospace; }
