@@ -45,6 +45,88 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
+// OG Image SVG - 1200x630 for social sharing
+const OG_IMAGE_SVG = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050505"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff0055"/>
+      <stop offset="50%" style="stop-color:#ffcc00"/>
+      <stop offset="100%" style="stop-color:#00ff88"/>
+    </linearGradient>
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="scanlines">
+      <feImage xlink:href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='2' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E" x="0" y="0" width="4" height="4" result="tile"/>
+      <feTile in="tile" result="tiled"/>
+      <feComposite in="SourceGraphic" in2="tiled" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="0" x2="1200" y2="630" stroke="#00ff88" stroke-width="0.5"/>
+    <line x1="0" y1="630" x2="1200" y2="0" stroke="#00ff88" stroke-width="0.5"/>
+    ${Array.from({length: 12}, (_, i) => `<line x1="${i * 100}" y1="0" x2="${i * 100}" y2="630" stroke="#00ff88" stroke-width="0.3"/>`).join('')}
+    ${Array.from({length: 7}, (_, i) => `<line x1="0" y1="${i * 90}" x2="1200" y2="${i * 90}" stroke="#00ff88" stroke-width="0.3"/>`).join('')}
+  </g>
+
+  <!-- Decorative cube wireframe -->
+  <g transform="translate(900, 315)" opacity="0.3">
+    <g stroke="#00ffff" stroke-width="2" fill="none" filter="url(#neon)">
+      <polygon points="0,-80 69,-40 69,40 0,80 -69,40 -69,-40"/>
+      <line x1="0" y1="-80" x2="0" y2="80"/>
+      <line x1="-69" y1="-40" x2="69" y2="40"/>
+      <line x1="69" y1="-40" x2="-69" y2="40"/>
+    </g>
+  </g>
+
+  <!-- Main text -->
+  <text x="100" y="260" font-family="Courier New, monospace" font-size="72" font-weight="bold" fill="#00ff88" filter="url(#neon)">
+    TAYLOR BULEY
+  </text>
+
+  <!-- Subtitle -->
+  <text x="100" y="340" font-family="Courier New, monospace" font-size="36" fill="#00ffff" opacity="0.8">
+    COGNITIVE ARCHITECT
+  </text>
+
+  <!-- Tagline -->
+  <text x="100" y="420" font-family="Courier New, monospace" font-size="22" fill="#ffffff" opacity="0.6">
+    Building intelligent systems that augment human capability
+  </text>
+
+  <!-- Progress bar decoration -->
+  <g transform="translate(100, 500)">
+    <rect x="0" y="0" width="400" height="8" fill="#111" stroke="#333" stroke-width="1" transform="skewX(-20)"/>
+    <rect x="2" y="2" width="396" height="4" fill="url(#glow)" transform="skewX(-20)"/>
+  </g>
+
+  <!-- Domain -->
+  <text x="100" y="560" font-family="Courier New, monospace" font-size="18" fill="#00ff88" opacity="0.5">
+    buley.fyi
+  </text>
+
+  <!-- Corner accents -->
+  <g stroke="#00ff88" stroke-width="2" fill="none" opacity="0.5">
+    <polyline points="20,20 20,60 60,60"/>
+    <polyline points="1180,20 1180,60 1140,60"/>
+    <polyline points="20,610 20,570 60,570"/>
+    <polyline points="1180,610 1180,570 1140,570"/>
+  </g>
+</svg>`;
+
 // Get the HTML content
 const INDEX_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -1280,6 +1362,17 @@ export default {
       // Routes registry - /routes
       if (url.pathname.startsWith('/routes')) {
         return handleRoutesRequest(request, env, corsHeaders);
+      }
+
+      // OG Image
+      if (url.pathname === '/og-image.png' || url.pathname === '/og-image.svg') {
+        return new Response(OG_IMAGE_SVG, {
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'image/svg+xml',
+            'Cache-Control': 'public, max-age=86400',
+          },
+        });
       }
 
       // Health check
